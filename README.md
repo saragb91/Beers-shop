@@ -1,5 +1,2 @@
 # Beers-shop
-# Beers-shop
-# beers-shop
-# beer2
-# beer
+Aplicación de tienda de cerveza, donde podemos aplicar filtros. Desarrollada con react, handlebars, sass.
