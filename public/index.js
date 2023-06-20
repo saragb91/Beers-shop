@@ -70,7 +70,7 @@ const data = [
     filterId: 1,
   },
 ];
-
+const CACHE_KEY = 'beers-filter';
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -79,6 +79,16 @@ class App extends React.Component {
       showModal: false,
       filters: [],
     };
+  }
+
+  componentWillMount() {
+    let beersFilter = JSON.parse(localStorage.getItem(CACHE_KEY));
+    if (beersFilter && beersFilter.length) {
+      this.setState({ filters: beersFilter });
+      this.setState({
+        beers: data.filter((beer) => beersFilter.includes(beer.filterId)),
+      });
+    }
   }
 
   selectBeer = (value) => {
@@ -92,25 +102,29 @@ class App extends React.Component {
   };
 
   cleanSelection = () => {
+    const filters = JSON.stringify([]);
+    localStorage.setItem(CACHE_KEY, filters);
+
     this.setState({ filters: [] });
     this.setState({ showModal: false });
     this.setState({ beers: data });
   };
 
-  addBeer = () => {
-    this.setState({ counter: this.state.counter + 1 });
-  };
-
   filterBeers = () => {
-    if (this.state.filters.length !== 0) {
+    const filters = JSON.stringify(this.state.filters);
+    localStorage.setItem(CACHE_KEY, filters);
+
+    if (this.state.filters.length) {
       const filteredBeers = data.filter((beer) =>
         this.state.filters.includes(beer.filterId)
       );
-
       this.setState({ beers: filteredBeers });
-      this.setState({ showModal: false });
+    } else {
+      this.setState({ beers: data });
     }
+    this.setState({ showModal: false });
   };
+
   render() {
     const hbr = `
 
