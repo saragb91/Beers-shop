@@ -135,7 +135,7 @@ class App extends React.Component {
         <p class='price'>$ {{ price }}</p> 
       </header>
       <div>
-        <button onClick={this.addBeer}>Agregar</button>
+        <button>Agregar</button>
       </div>`;
     let template = Handlebars.compile(hbr);
 
@@ -156,7 +156,7 @@ class App extends React.Component {
             </div>
           </div>
         </header>
-        <main class={this.state.showModal && 'opacity'}>
+        <main class={this.state.showModal ? 'opacity' : null}>
           <header>
             <h1>Cervezas</h1>
           </header>
@@ -164,6 +164,7 @@ class App extends React.Component {
             <ol>
               {this.state.beers.map((beer) => (
                 <article
+                  key={beer.name}
                   dangerouslySetInnerHTML={{
                     __html: template(beer),
                   }}
@@ -179,7 +180,7 @@ class App extends React.Component {
             </aside>
           </section>
         </main>
-        <footer class={this.state.showModal && 'opacity'}>
+        <footer class={this.state.showModal ? 'opacity' : null}>
           <h4>¿Podemos ayudarte?</h4>
           <div class='help-container'>
             <div>
@@ -239,7 +240,7 @@ class App extends React.Component {
                 <input
                   type='checkbox'
                   key={1}
-                  checked={this.state.filters.includes(1)}
+                  defaultChecked={this.state.filters.includes(1)}
                   onClick={() => this.selectBeer(1)}
                 />
               </label>
@@ -248,7 +249,7 @@ class App extends React.Component {
                 <input
                   type='checkbox'
                   key={2}
-                  checked={this.state.filters.includes(2)}
+                  defaultChecked={this.state.filters.includes(2)}
                   onClick={() => this.selectBeer(2)}
                 />
               </label>
@@ -257,7 +258,7 @@ class App extends React.Component {
                 <input
                   type='checkbox'
                   key={3}
-                  checked={this.state.filters.includes(3)}
+                  defaultChecked={this.state.filters.includes(3)}
                   onClick={() => this.selectBeer(3)}
                 />
               </label>
