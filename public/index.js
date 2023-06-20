@@ -74,7 +74,6 @@ const data = [
 class App extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       beers: data,
       showModal: false,
@@ -171,13 +170,13 @@ class App extends React.Component {
           <div class='help-container'>
             <div>
               <div class='help-button-container'>
-                <img src='/svg/intercom.svg'/>
+                <img src='/svg/intercom.svg' />
               </div>
               <p class='help-paragraph'>Chat</p>
             </div>
             <div>
               <div class='help-button-container'>
-                <img src='/svg/phone.svg'/>
+                <img src='/svg/phone.svg' />
               </div>
               <p class='help-paragraph'>Llamar</p>
             </div>
